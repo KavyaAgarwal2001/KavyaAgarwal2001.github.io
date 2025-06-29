@@ -36,15 +36,16 @@ body {
   }
   
   .photo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem;
+    columns: 2 180px;
+    column-gap: 1rem;
   }
+  
   .photo-grid img {
     width: 100%;
-    border-radius: 6px;
+    display: block;
+    margin-bottom: 1rem;
+    border-radius: 3px;
   }
-
   /* Make all links black and remove underline */
 a {
     color: black;
