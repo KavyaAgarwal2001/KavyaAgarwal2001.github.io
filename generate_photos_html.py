@@ -95,7 +95,9 @@ def generate_html():
             # Write images
             for img in images:
                 src = f'{PHOTO_ROOT}/{trip["folder"]}/{img}'
-                f.write(f'  <img src="{src}" alt="{img}">\n')
+                #f.write(f'  <img src="{src}" alt="{img}">\n')
+                f.write(f'  <img src="{src}" alt="{img}" loading="lazy" decoding="async">\n')
+
 
             f.write("</div>\n</section>\n\n")
 
