@@ -65,3 +65,151 @@ a {
     border-radius: 10px;
   }
   
+/* --- homepage photo: text wraps, floats right; stacks on small screens --- */
+.home-photo{
+  float: right;
+  width: 220px;          /* tweak 200–260 */
+  max-width: 45%;
+  margin: 0.25rem 0 1rem 1.25rem;  /* space from text */
+  border-radius: 12px;
+}
+
+/* When the page is too narrow, stop floating and put image on top */
+@media (max-width: 640px){
+  .home-photo{
+    float: none;
+    display: block;
+    width: 80%;
+    max-width: 420px;
+    margin: 1rem auto 1.25rem;
+  }
+}
+
+/* Prevent float from leaking into the next sections */
+#top::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+/* Make external links look like links (without changing nav / internal links) */
+main a[target="_blank"]{
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+main a[target="_blank"]:hover{
+  text-decoration-thickness: 2px;
+}
+
+/* ---- tiny polish (minimal changes, big payoff) ---- */
+html { scroll-behavior: smooth; }
+
+/* A touch more breathing room + better reading rhythm */
+section { margin-top: 3rem; }
+h1 { line-height: 1.15; margin: 2rem 0 0.75rem; }
+h3 { margin: 1.6rem 0 0.25rem; }
+p  { margin: 0.6rem 0 0.9rem; }
+
+/* Make the old struck-out 2025 text feel "archived", not loud */
+del {
+  color: #777;
+  text-decoration-color: #bbb;
+  text-decoration-thickness: 1px;
+}
+
+/* Subtle nav divider + slightly tighter nav text */
+nav {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 2.5rem;
+}
+nav ul {
+  flex-wrap: wrap;            /* helps on smaller screens */
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+/* Make icon links feel nicer to click (without changing style) */
+nav a[aria-label]{
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+}
+nav svg { display: block; }
+
+/* Gentle dividers only inside Experience/Education (not essays list) */
+#experience article + article,
+#education article + article {
+  border-top: 1px solid #eee;
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+ /* ---- nav: make CV + icons feel like a grouped cluster ---- */
+
+/* slightly reduce overall nav gap */
+nav ul { gap: 0.55rem; }
+
+/* tighten spacing specifically between the CV + icons */
+nav ul li:nth-last-child(-n+4) {      /* last 4 items: CV + 3 icons */
+  margin-left: -0.15rem;
+}
+
+nav a[title="CV"]{
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+nav a[title="CV"]:hover{
+  background: #f2f2f2;
+}
+
+/* a little extra space before the cluster so it reads like a group */
+nav ul li:nth-last-child(4) {         /* the CV item (first of the last 4) */
+  margin-left: 0.85rem;
+}
+
+/* --- make nav icons feel clickable (minimal) --- */
+nav a[aria-label]{
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+nav a[aria-label]:hover{
+  background: #f2f2f2;
+}
+
+nav a[aria-label]:focus-visible{
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+/* optional: make the icon darken slightly on hover */
+nav a[aria-label]:hover svg{
+  transform: translateY(-0.5px);
+}
+
+nav svg { display: block; }
+
+.meta { color: #555; font-size: 0.95rem; }
+
+/* --- pastel heading color --- */
+:root{
+  --accent: #7aa7d9; /* pastel blue; tweak if you want more/less saturated */
+}
+
+/* Apply to headings in the main content */
+main h1, main h2{
+  color: var(--accent);
+}
+
+/* Keep navbar title/link black (so the whole nav doesn't turn blue) */
+nav h2, nav a{
+  color: black;
+}
+
