@@ -1,80 +1,65 @@
-body {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    max-width: 700px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    line-height: 1.6;
-    background: white;
-    color: black;
-  }
-  
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-    padding-left: 0;
-  }
-  
-  nav a {
-    text-decoration: none;
-    color: black;
-  }
-  
-  main h1 {
-    margin-top: 0;
-  }
-  
-  article {
-    margin-bottom: 2rem;
-  }
-  
-  .photo-grid {
-    columns: 2 180px;
-    column-gap: 1rem;
-  }
-  
-  .photo-grid img {
-    width: 100%;
-    display: block;
-    margin-bottom: 1rem;
-    border-radius: 3px;
-  }
-  /* Make all links black and remove underline */
-a {
-    color: black;
-    text-decoration: none;
-  }
-  
-  /* Keep links black even after visiting */
-  a:visited {
-    color: black;
-  }
-  
-  .centered-image {
-    display: block;
-    margin: 2rem auto;
-    max-width: 400px;
-    width: 40%;
-    border-radius: 10px;
-  }
-  
-/* --- homepage photo: text wraps, floats right; stacks on small screens --- */
+/* css/styles.css */
+
+/* ---- base ---- */
+:root{
+  --accent: #7aa7d9; /* pastel blue */
+}
+
+html { scroll-behavior: smooth; }
+
+body{
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  line-height: 1.6;
+  background: #fff;
+  color: #000;
+}
+
+/* links */
+a{
+  color: #000;
+  text-decoration: none;
+}
+a:visited{ color: #000; }
+
+/* make external links look like links (but not nav links) */
+main a[target="_blank"]{
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+main a[target="_blank"]:hover{
+  text-decoration-thickness: 2px;
+}
+
+/* headings + rhythm */
+section { margin-top: 3rem; }
+main h1, main h2 { color: var(--accent); }
+h1 { line-height: 1.15; margin: 2rem 0 0.75rem; }
+h3 { margin: 1.6rem 0 0.25rem; }
+p  { margin: 0.6rem 0 0.9rem; }
+
+article{ margin-bottom: 2rem; }
+.meta{ color: #555; font-size: 0.95rem; }
+
+/* archived strike-through text */
+del{
+  color: #777;
+  text-decoration-color: #bbb;
+  text-decoration-thickness: 1px;
+}
+
+/* ---- homepage photo: float on desktop, stack on mobile ---- */
 .home-photo{
   float: right;
-  width: 220px;          /* tweak 200–260 */
+  width: 220px;
   max-width: 45%;
-  margin: 0.25rem 0 1rem 1.25rem;  /* space from text */
+  margin: 0.25rem 0 1rem 1.25rem;
   border-radius: 12px;
 }
 
-/* When the page is too narrow, stop floating and put image on top */
 @media (max-width: 640px){
   .home-photo{
     float: none;
@@ -85,92 +70,91 @@ a {
   }
 }
 
-/* Prevent float from leaking into the next sections */
+/* prevent float from leaking */
 #top::after{
   content: "";
   display: block;
   clear: both;
 }
-/* Make external links look like links (without changing nav / internal links) */
-main a[target="_blank"]{
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  text-decoration-thickness: 1px;
+
+/* ---- photo grid (photos.html) ---- */
+.photo-grid{
+  columns: 2 180px;
+  column-gap: 1rem;
+}
+.photo-grid img{
+  width: 100%;
+  display: block;
+  margin-bottom: 1rem;
+  border-radius: 3px;
 }
 
-main a[target="_blank"]:hover{
-  text-decoration-thickness: 2px;
+.centered-image{
+  display: block;
+  margin: 2rem auto;
+  max-width: 400px;
+  width: 40%;
+  border-radius: 10px;
 }
 
-/* ---- tiny polish (minimal changes, big payoff) ---- */
-html { scroll-behavior: smooth; }
-
-/* A touch more breathing room + better reading rhythm */
-section { margin-top: 3rem; }
-h1 { line-height: 1.15; margin: 2rem 0 0.75rem; }
-h3 { margin: 1.6rem 0 0.25rem; }
-p  { margin: 0.6rem 0 0.9rem; }
-
-/* Make the old struck-out 2025 text feel "archived", not loud */
-del {
-  color: #777;
-  text-decoration-color: #bbb;
-  text-decoration-thickness: 1px;
+/* ---- section dividers inside Experience/Education ---- */
+#experience article + article,
+#education article + article{
+  border-top: 0.25px solid #eee;
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
 }
 
-/* Subtle nav divider + slightly tighter nav text */
-nav {
+/* =========================
+   Responsive navbar (clean)
+   ========================= */
+.site-nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid #eee;
   margin-bottom: 2.5rem;
 }
-nav ul {
-  flex-wrap: wrap;            /* helps on smaller screens */
+
+.site-title{
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* keep navbar title/link black */
+.site-nav a{
+  color: #000;
+  text-decoration: none;
+}
+
+.nav-links,
+.nav-icons{
+  list-style: none;
+  display: flex;
   align-items: center;
+  gap: 0.85rem;
+  padding: 0;
+  margin: 0;
   font-size: 0.95rem;
 }
 
-/* Make icon links feel nicer to click (without changing style) */
-nav a[aria-label]{
-  display: inline-flex;
-  align-items: center;
-  padding: 2px;
-}
-nav svg { display: block; }
+.nowrap{ white-space: nowrap; }
 
-/* Gentle dividers only inside Experience/Education (not essays list) */
-#experience article + article,
-#education article + article {
-  border-top: 1px solid #eee;
-  padding-top: 1.25rem;
-  margin-top: 1.25rem;
-}
-
- /* ---- nav: make CV + icons feel like a grouped cluster ---- */
-
-/* slightly reduce overall nav gap */
-nav ul { gap: 0.55rem; }
-
-/* tighten spacing specifically between the CV + icons */
-nav ul li:nth-last-child(-n+4) {      /* last 4 items: CV + 3 icons */
-  margin-left: -0.15rem;
-}
-
-nav a[title="CV"]{
+/* CV button-ish styling */
+.cv-link{
   padding: 6px 10px;
   border-radius: 8px;
 }
-nav a[title="CV"]:hover{
+.cv-link:hover{
   background: #f2f2f2;
 }
 
-/* a little extra space before the cluster so it reads like a group */
-nav ul li:nth-last-child(4) {         /* the CV item (first of the last 4) */
-  margin-left: 0.85rem;
-}
-
-/* --- make nav icons feel clickable (minimal) --- */
-nav a[aria-label]{
+/* icon links */
+.site-nav a[aria-label]{
   width: 32px;
   height: 32px;
   border-radius: 8px;
@@ -178,38 +162,72 @@ nav a[aria-label]{
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  padding: 2px;
 }
-
-nav a[aria-label]:hover{
-  background: #f2f2f2;
-}
-
-nav a[aria-label]:focus-visible{
+.site-nav a[aria-label]:hover{ background: #f2f2f2; }
+.site-nav a[aria-label]:focus-visible{
   outline: 2px solid #000;
   outline-offset: 2px;
 }
+.site-nav svg{ display: block; }
 
-/* optional: make the icon darken slightly on hover */
-nav a[aria-label]:hover svg{
-  transform: translateY(-0.5px);
+/* burger hidden on desktop */
+.nav-toggle{
+  display: none;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
-nav svg { display: block; }
+/* =========================
+   Mobile layout
+   ========================= */
+@media (max-width: 720px){
+  .site-nav{
+    flex-wrap: wrap;
+  }
 
-.meta { color: #555; font-size: 0.95rem; }
+  /* Put the title left, and push everything else to the right */
+  .site-title{
+    margin-right: auto;
+  }
 
-/* --- pastel heading color --- */
-:root{
-  --accent: #7aa7d9; /* pastel blue; tweak if you want more/less saturated */
+  /* Burger sits to the right of the title */
+  .nav-toggle{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;              /* important */
+    order: 2;                    /* keep it near icons */
+  }
+
+  /* Icons stay at the far right */
+  .nav-icons{
+    order: 3;
+    margin-left: 0;              /* important */
+    gap: 0.4rem;
+  }
+
+  /* Links dropdown goes full width under the header row */
+  .nav-links{
+    order: 4;
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding: 0.75rem 0 0.25rem;
+    border-top: 1px solid #eee;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .nav-links.open{
+    display: flex;
+  }
 }
-
-/* Apply to headings in the main content */
-main h1, main h2{
-  color: var(--accent);
-}
-
-/* Keep navbar title/link black (so the whole nav doesn't turn blue) */
-nav h2, nav a{
-  color: black;
-}
-

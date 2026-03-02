@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Something about a Watermelon – Kavya Agarwal</title>
-  <link rel="stylesheet" href="../css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kavya — Projects</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
+  <!-- NAV (same on every page) -->
   <nav class="site-nav">
     <h2 class="site-title"><a href="index.html">Kavya</a></h2>
 
-    <!-- Mobile toggle -->
-    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" type="button">
-      ☰
-    </button>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" type="button">☰</button>
 
-    <!-- Main links -->
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html#top">Home</a></li>
       <li><a href="index.html#experience">Experience</a></li>
@@ -25,7 +24,6 @@
       <li><a href="lifelist.html"><span class="nowrap">Life List</span></a></li>
     </ul>
 
-    <!-- Right-side cluster (stays visible) -->
     <ul class="nav-icons">
       <li><a class="cv-link" href="assets/cv.pdf" target="_blank" rel="noopener noreferrer" title="CV">CV</a></li>
 
@@ -57,33 +55,40 @@
   </nav>
 
   <main>
-    <h1>Something about a Watermelon</h1>
-    <p><em>24 June 2025</em></p>
+    <section>
+      <h1>Projects</h1>
 
-    <p>A few days ago, I sliced open a watermelon - as one does on a summer afternoon - and saw something strangely exciting. 
-        A pattern. To be more pricise, a plume-like pattern. 
-        It reminded me of our instabilities and mantle plumes — 
-        how we live on this ball of rocks that's cooling to the space and that loss of heat leads to the a poetic order (and chaos) beneath our feet.</p>
+      <article>
+        <h3>PINN-based OAE Emulator</h3>
+        <p class="meta">Physics-informed emulator for tracer transport in ocean simulations (Oceananigans).</p>
+        <p>
+          <a href="https://oae-pinn-emulator.github.io" target="_blank" rel="noopener noreferrer">Project site →</a>
+          ·
+          <a href="https://github.com/oae-pinn-emulator" target="_blank" rel="noopener noreferrer">GitHub →</a>
+        </p>
+      </article>
 
-    <p>It made me wonder about order in instability. Why certain flows are beautiful.</p>
+      <article>
+        <h3>2D Rayleigh–Bénard Convection</h3>
+        <p class="meta">Interactive Boussinesq convection visualization in the browser.</p>
+        <p>
+          <a href="https://kavyaagarwal2001.github.io/rb-convection/" target="_blank" rel="noopener noreferrer">Live demo →</a>
+          ·
+          <a href="https://github.com/KavyaAgarwal2001/rb-convection" target="_blank" rel="noopener noreferrer">GitHub →</a>
+        </p>
+      </article>
 
-    <p>I have a version of this blog that isn't yet quite like I want it be. 
-        So until I write it here is an image of that watermelon for you to look at:</p>
-
-    <figure>
-        <img src="../images/essays/watermelon-plume.jpg" alt="Watermelon plume pattern" class="centered-image">
-        <figcaption style="text-align: center; font-size: 0.9rem; color: #666;">
-          Plume-like patterns in a watermelon.
-        </figcaption>
-      </figure>
-      
+      <article>
+        <h3>YCGS / Yale EPI Analytics (Coming soon)</h3>
+        <p class="meta">Applied environmental analytics work</p>
+      </article>
+    </section>
   </main>
 
-    <script>
+  <script>
     document.addEventListener("DOMContentLoaded", () => {
       const btn = document.querySelector(".nav-toggle");
       const menu = document.querySelector(".nav-links");
-
       if (!btn || !menu) return;
 
       btn.addEventListener("click", () => {
@@ -92,6 +97,5 @@
       });
     });
   </script>
-  
 </body>
 </html>
